@@ -1,0 +1,16 @@
+server {
+        #listen   80; ## listen for ipv4; this line is default and implied
+
+        root /usr/share/nginx/www;
+        index index.php index.html index.htm;
+
+        server_name localhost;
+
+        location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                include fastcgi_params;
+        }
+}
+
