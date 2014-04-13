@@ -3,6 +3,7 @@
 set -eux
 
 DOCKER=docker
+PORT=${PORT:-8081}
 
 # hack for debian
 if which docker.io; then
@@ -13,4 +14,4 @@ fi
 $DOCKER build -t roundcube ./roundcube
 
 # 2. Start it
-$DOCKER run -p 127.0.0.1:8082:80 -d --name roundcube roundcube
+$DOCKER run -p 127.0.0.1:$PORT:80 -d --name roundcube roundcube
