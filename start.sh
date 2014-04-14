@@ -10,8 +10,17 @@ if which docker.io; then
     DOCKER=docker.io
 fi
 
+# 0. Create roundcube-data container to host only data
+$DOCKER ps -a | grep roundcube-data
+
+if [ $? = 0 ]; then
+    true
+else
+    $DOCKER run -v /rc --name roundcube-data busybox true
+fi
+
 # 1. Create image with roundcube
 $DOCKER build -t roundcube ./roundcube
 
-# 2. Start it
-$DOCKER run -p 127.0.0.1:$PORT:80 -d --name roundcube roundcube
+# 2. Start it and attach rc-data volumes
+$DOCKER run -p 127.0.0.1:$PORT:80 --volumes-from roundcube-data -d --name roundcube roundcube

@@ -13,8 +13,6 @@ it with port forwarding at 127.0.0.1:8081. You may use PORT env.
 variable to change the default port.
   4. Update your web server to proxy connections.
 
-TODO
--------
-
-Probably the SQLite database should be stored in a data-only
-container to ease transitions to newer versions.
+The SQLite database for contacts, settings, etc. is kept
+in `/rc` inside roundcube-data container. Even if you delete
+roundcube container, the database will persist in it.
