@@ -11,9 +11,12 @@ if which docker.io; then
 fi
 
 # 0. Create roundcube-data container to host only data
+set +e
 $DOCKER ps -a | grep roundcube-data
+RESULT=$?
+set -e
 
-if [ $? = 0 ]; then
+if [ $RESULT = 0 ]; then
     true
 else
     $DOCKER run -v /rc --name roundcube-data busybox true
