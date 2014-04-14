@@ -3,8 +3,6 @@ FROM    debian:wheezy
 ENV     DEBIAN_FRONTEND noninteractive
 MAINTAINER Round Cube <rc@xxx.org>
 
-VOLUME [ "/rc" ]
-
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get install -y --no-install-recommends nginx php5-fpm nano wget php5-mcrypt php5-intl php5-sqlite sqlite3 procps
 
