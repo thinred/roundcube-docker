@@ -19,7 +19,7 @@ set -e
 if [ $RESULT = 0 ]; then
     true
 else
-    $DOCKER run -v /rc --name roundcube-data busybox true
+    $DOCKER run -v /rc --name roundcube-data busybox mkdir -p /rc
 fi
 
 # 1. Create image with roundcube
