@@ -12,7 +12,11 @@ if sudo $DOCKER --version ; then
 fi
 
 # make output verbose
-set -o xtrace -o nounset 
+set -o xtrace -o nounset
+
+# set the random_key if not already set
+HASH=$(cat /dev/urandom | tr -dc 'a-f0-9' | fold -w 48 | head -n 1)
+sed -i "s/{{RANDOM_KEY}}/${HASH}/g" ./roundcube/config.inc.php
 
 # 0. Create roundcube-data container to host only data
 sudo $DOCKER ps -a | grep 'roundcube-data'
