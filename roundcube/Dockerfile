@@ -8,9 +8,9 @@ RUN apt-get install -y --no-install-recommends nginx php5-fpm nano wget php5-mcr
 WORKDIR /root
 # when roundcube grows older, change version in the download link, but also in the 'mv' command
 RUN \
-    wget http://freefr.dl.sourceforge.net/project/roundcubemail/roundcubemail/1.0.2/roundcubemail-1.0.2.tar.gz -O - | tar xz ;\
+    wget http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/1.0.4/roundcubemail-1.0.4.tar.gz -O - | tar xz ;\
     rm -r /usr/share/nginx/www ;\
-    mv /root/roundcubemail-1.0.2 /usr/share/nginx/www ;\
+    mv /root/roundcubemail-1.0.4 /usr/share/nginx/www ;\
     rm -r /usr/share/nginx/www/installer ;\
     mkdir -p /rc
 ADD config.inc.php /usr/share/nginx/www/config/
