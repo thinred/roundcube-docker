@@ -55,7 +55,7 @@ $config['temp_dir'] = '/rc/tmp';
 // this key is used to encrypt the users imap password which is stored
 // in the session record (and the client cookie if remember password is enabled).
 // please provide a string of exactly 24 chars.
-$config['des_key'] = hex2bin('RANDOM_KEY');
+$config['des_key'] = hex2bin('{{RANDOM_KEY}}');
 
 // Name your service. This is displayed on the login screen and in the window title
 $config['product_name'] = 'RC Mail';
