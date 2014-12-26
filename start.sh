@@ -7,7 +7,7 @@ if which docker; then DOCKER='docker'
 else DOCKER='docker.io' ; fi # debian default
 
 # check that docker is installed
-if sudo $DOCKER --version ; then
+if ! sudo $DOCKER --version ; then
     echo 'install docker first...' ; exit 1
 fi
 
