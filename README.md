@@ -12,7 +12,7 @@ Steps:
 Roundcube will show a generic login page where the user can
 specify IMAP server.
   2. Launch `sudo ./start.sh` to create roundcube image and start
-it with port forwarding at 127.0.0.1:8081. You may use LSITEN and PORT env.
+it with port forwarding at 127.0.0.1:8081. You may use LISTEN and PORT env.
 variables to change the default listening address and port.
   3. Update your web server to proxy connections.
 
