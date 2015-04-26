@@ -27,7 +27,19 @@ $config['db_dsnw'] = 'sqlite:////rc/roundcubemail.sqlite?mode=0640';
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = 'ssl://server';
+
+// $config['default_host'] = 'ssl://your-imap-server';
+$config['default_host'] = '';
+
+// required to ignore SSL cert. verification
+// see: https://bbs.archlinux.org/viewtopic.php?id=187063
+$config['imap_conn_options'] = array(
+  'ssl' => array(
+	 'verify_peer'  => false,
+	 'verify_peer_name' => false,
+   ),
+);
+
 
 // SMTP username (if required) if you use %u as the username Roundcube
 // will use the current username for login

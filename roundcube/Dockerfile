@@ -1,17 +1,19 @@
 FROM    debian:stable
 ENV     DEBIAN_FRONTEND noninteractive
+ENV     TERM xterm
 MAINTAINER Round Cube <rc@xxx.org>
 
 RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get install -y --no-install-recommends nginx php5-fpm nano wget php5-mcrypt php5-intl php5-sqlite sqlite3 procps
-
+RUN apt-get install -y --no-install-recommends \
+    nginx php5-fpm nano wget sqlite3 procps \
+    php5-mcrypt php5-intl php5-sqlite php-pear
 WORKDIR /root
 # when roundcube grows older, change version in the download link, but also in the 'mv' command
 RUN \
-    wget http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/1.0.4/roundcubemail-1.0.4.tar.gz -O - | tar xz ;\
-    rm -r /usr/share/nginx/www ;\
-    mv /root/roundcubemail-1.0.4 /usr/share/nginx/www ;\
-    rm -r /usr/share/nginx/www/installer ;\
+    wget http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/1.1.1/roundcubemail-1.1.1.tar.gz -O - | tar xz ;\
+    rm -fr /usr/share/nginx/www ;\
+    mv /root/roundcubemail-1.1.1 /usr/share/nginx/www ;\
+    rm -fr /usr/share/nginx/www/installer ;\
     mkdir -p /rc
 ADD config.inc.php /usr/share/nginx/www/config/
 ADD default /etc/nginx/sites-enabled/default
