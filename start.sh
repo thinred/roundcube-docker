@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PORT=${PORT:-8081}
+LISTEN=${LISTEN:-127.0.0.1}
 
 # determine the docker executable name
 if which docker; then DOCKER='docker'
@@ -29,4 +30,4 @@ fi
 sudo $DOCKER build -t thinred/roundcube ./roundcube
 
 # 2. Start it and attach rc-data volumes
-sudo $DOCKER run -p 0.0.0.0:$PORT:80 --volumes-from roundcube-data -d --name roundcube thinred/roundcube
+sudo $DOCKER run -p ${LISTEN}:${PORT}:80 --volumes-from roundcube-data -d --name roundcube thinred/roundcube
