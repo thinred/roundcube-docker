@@ -39,7 +39,12 @@ $config['imap_conn_options'] = array(
 	 'verify_peer_name' => false,
    ),
 );
-
+$config['smtp_conn_options'] = array(
+  'ssl' => array(
+        'verify_peer'   => false,
+        'verify_peer_name' => false,
+  ),
+);
 
 // SMTP username (if required) if you use %u as the username Roundcube
 // will use the current username for login
