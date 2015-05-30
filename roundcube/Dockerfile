@@ -6,7 +6,8 @@ MAINTAINER Round Cube <rc@xxx.org>
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get install -y --no-install-recommends \
     nginx php5-fpm nano wget sqlite3 procps \
-    php5-mcrypt php5-intl php5-sqlite php-pear
+    php5-mcrypt php5-intl php5-sqlite php-pear \
+    php-net-smtp php-mail-mime
 WORKDIR /root
 # when roundcube grows older, change version in the download link, but also in the 'mv' command
 RUN \
