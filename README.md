@@ -1,7 +1,7 @@
 roundcube-docker
 ================
 
-Installs roundcube 1.1.1 inside a docker container.
+Installs roundcube 1.2.1 inside a docker container.
 
 The installation may be used on your server, but also as a standalone
 IMAP client (if you skip the step 1. below).
