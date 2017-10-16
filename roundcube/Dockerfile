@@ -9,12 +9,12 @@ RUN apt-get install -y --no-install-recommends \
     php7.0-fpm php7.0-mcrypt php7.0-intl php7.0-sqlite3 \
     php-pear php-net-smtp php-mail-mime
 WORKDIR /root
-# when roundcube grows older, change version in the download link, but also in the 'mv' command
-RUN \
-    wget https://github.com/roundcube/roundcubemail/releases/download/1.2.1/roundcubemail-1.2.1-complete.tar.gz -O - | tar xz ;\
-    rm -fr /usr/share/nginx/www ;\
-    mv /root/roundcubemail-1.2.1 /usr/share/nginx/www ;\
-    rm -fr /usr/share/nginx/www/installer ;\
+
+ARG RC_VER=1.3.1
+RUN rm -fr /usr/share/nginx/www &&\
+    wget https://github.com/roundcube/roundcubemail/releases/download/${RC_VER}/roundcubemail-${RC_VER}-complete.tar.gz -O - | tar xz &&\
+    mv /root/roundcubemail-${RC_VER} /usr/share/nginx/www &&\
+    rm -fr /usr/share/nginx/www/installer &&\
     mkdir -p /rc
 ADD config.inc.php /usr/share/nginx/www/config/
 ADD default /etc/nginx/sites-enabled/default
