@@ -1,13 +1,13 @@
 FROM    debian:testing
 ENV     DEBIAN_FRONTEND noninteractive
 ENV     TERM xterm
-MAINTAINER Round Cube <rc@xxx.org>
+MAINTAINER MAINTAINER Michael Bushey <roundcube@sendthemtomir.com>
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get install -y --no-install-recommends \
-    ca-certificates nginx php7.0-fpm nano wget sqlite3 procps \
-    php7.0-mcrypt php7.0-intl php7.0-sqlite3 php-pear \
-    php-net-smtp php-mail-mime
+    ca-certificates nginx wget sqlite3 procps \
+    php7.0-fpm php7.0-mcrypt php7.0-intl php7.0-sqlite3 \
+    php-pear php-net-smtp php-mail-mime
 WORKDIR /root
 # when roundcube grows older, change version in the download link, but also in the 'mv' command
 RUN \
