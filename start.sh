@@ -27,7 +27,7 @@ if [ "$?" -ne 0 ] ; then
 fi
 
 # 1. Create image with roundcube
-sudo $DOCKER build -t thinred/roundcube ./roundcube
+sudo $DOCKER build -t mabushey/roundcube ./roundcube
 
 # 2. Start it and attach rc-data volumes
-sudo $DOCKER run -p ${LISTEN}:${PORT}:80 --volumes-from roundcube-data -d --name roundcube thinred/roundcube
+$DOCKER run --restart unless-stopped -p ${LISTEN}:${PORT}:80 --volumes-from roundcube-data -d --name roundcube mabushey/roundcube
