@@ -1,7 +1,7 @@
 FROM    debian:testing
 ENV     DEBIAN_FRONTEND noninteractive
 ENV     TERM xterm
-MAINTAINER MAINTAINER Michael Bushey <roundcube@sendthemtomir.com>
+LABEL maintainer="Michael Bushey <roundcube@sendthemtomir.com>"
 
 RUN apt-get -y update &&\
     apt-get -y upgrade &&\
