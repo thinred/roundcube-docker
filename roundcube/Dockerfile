@@ -16,7 +16,7 @@ RUN apt-get -y update &&\
     php-pear php-net-smtp php-mail-mime
 
 WORKDIR /root
-ARG RC_VER=1.3.1
+ARG RC_VER=1.3.7
 RUN rm -fr /usr/share/nginx/www &&\
     wget https://github.com/roundcube/roundcubemail/releases/download/${RC_VER}/roundcubemail-${RC_VER}-complete.tar.gz -O - | tar xz &&\
     mv /root/roundcubemail-${RC_VER} /usr/share/nginx/www &&\
