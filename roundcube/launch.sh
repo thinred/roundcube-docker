@@ -9,7 +9,7 @@ mkdir -p /rc/tmp
 chown -R www-data:www-data /rc
 
 service nginx start
-service php7.1-fpm start
+service php7.2-fpm start
 
 tail -F /var/log/nginx/access.log
 

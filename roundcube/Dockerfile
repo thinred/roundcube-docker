@@ -1,19 +1,14 @@
-FROM    debian:testing
-ENV     DEBIAN_FRONTEND noninteractive
-ENV     TERM xterm
+FROM  ubuntu:18.04
 LABEL maintainer="Michael Bushey <roundcube@sendthemtomir.com>"
 
-RUN apt-get -y update &&\
+RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
+    apt-get update &&\
     apt-get -y upgrade &&\
     apt-get install -y --no-install-recommends \
-    apt-transport-https ca-certificates \
-    nginx wget sqlite3 procps &&\
-    wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg &&\
-    sh -c 'echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list' &&\
-    apt-get -y update &&\
-    apt-get install -y --no-install-recommends \
-    php7.1-fpm php7.1-mcrypt php7.1-intl php7.1-sqlite3 \
-    php-pear php-net-smtp php-mail-mime
+      apt-transport-https ca-certificates nginx wget sqlite3 procps \
+      php7.2-fpm php7.2-intl php7.2-sqlite3 \
+      php-pear php-net-smtp php-mail-mime &&\
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
 ARG RC_VER=1.3.7
