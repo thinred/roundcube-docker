@@ -8,7 +8,8 @@ IMAP client (if you skip the step 1. below).
 
 Steps:
 
-  1. Customize `roundcube/config.inc.php`. If the file is unmodified,
+  1. `cp roundcube/config.inc.php.sample roundcube/config.inc.php`.
+Customize `roundcube/config.inc.php`. If the file is unmodified,
 Roundcube will show a generic login page where the user can
 specify IMAP server.
   2. Launch `sudo ./start.sh` to create roundcube image and start
