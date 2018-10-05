@@ -87,3 +87,8 @@ $config['plugins'] = array();
 // RFC1766 formatted language name like en_US, de_DE, de_CH, fr_FR, pt_BR
 $config['language'] = 'en_US';
 
+// ----------------------------------
+// Set https
+// ----------------------------------
+$config['use_https'] = true;
+

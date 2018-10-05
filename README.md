@@ -11,7 +11,8 @@ Steps:
   1. `cp roundcube/config.inc.php.sample roundcube/config.inc.php`.
   2. Customize `roundcube/config.inc.php`. If the file is unmodified,
 Roundcube will show a generic login page where the user can
-specify IMAP server.
+specify IMAP server. Comment out the use_https line if you're not using
+SSL.
   3. Launch `sudo ./start.sh` to create roundcube image and start
 it with port forwarding at 127.0.0.1:8081. You may use LISTEN and PORT env.
 variables to change the default listening address and port.
