@@ -11,7 +11,7 @@ RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
-ARG RC_VER=1.3.7
+ARG RC_VER=1.3.8
 RUN rm -fr /usr/share/nginx/www &&\
     wget https://github.com/roundcube/roundcubemail/releases/download/${RC_VER}/roundcubemail-${RC_VER}-complete.tar.gz -O - | tar xz &&\
     mv /root/roundcubemail-${RC_VER} /usr/share/nginx/www &&\
