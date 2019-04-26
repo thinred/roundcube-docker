@@ -92,3 +92,4 @@ $config['language'] = 'en_US';
 // ----------------------------------
 $config['use_https'] = true;
 
+$config['skin'] = 'elastic';
