@@ -1,4 +1,4 @@
-FROM  ubuntu:18.04
+FROM  ubuntu:19.04
 LABEL maintainer="Michael Bushey <roundcube@sendthemtomir.com>"
 
 RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
