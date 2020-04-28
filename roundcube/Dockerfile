@@ -1,4 +1,4 @@
-FROM  ubuntu:19.10
+FROM  ubuntu:20.04
 LABEL maintainer="Michael Bushey <roundcube@sendthemtomir.com>"
 
 RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
@@ -6,12 +6,12 @@ RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
     apt-get -y upgrade &&\
     apt-get install -y --no-install-recommends \
       apt-transport-https ca-certificates nginx wget sqlite3 procps \
-      php7.3-fpm php7.3-intl php7.3-sqlite3 \
+      php7.4-fpm php7.4-intl php7.4-sqlite3 \
       php-pear php-net-smtp php-mail-mime &&\
     rm -rf /var/lIB/apt/lists/*
 
 WORKDIR /root
-ARG RC_VER=1.4-rc2
+ARG RC_VER=1.4.3
 RUN rm -fr /usr/share/nginx/www &&\
     wget https://github.com/roundcube/roundcubemail/releases/download/${RC_VER}/roundcubemail-${RC_VER}-complete.tar.gz -O - | tar xz &&\
     mv /root/roundcubemail-${RC_VER} /usr/share/nginx/www &&\
