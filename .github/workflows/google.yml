@@ -16,6 +16,7 @@ on: push
 
 env:
   PROJECT_ID: plat-dev-266621 
+  CLOUDSDK_CORE_PROJECT: plat-dev-266621  
   GKE_CLUSTER: ops-cdx    # TODO: update to cluster name
   GKE_ZONE: us-central1-a   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
