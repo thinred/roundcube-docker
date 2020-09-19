@@ -10,6 +10,7 @@ RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
       php-pear php-net-smtp php-mail-mime &&\
     rm -rf /var/lIB/apt/lists/*
 
+
 WORKDIR /root
 ARG RC_VER=1.4.3
 RUN rm -fr /usr/share/nginx/www &&\
