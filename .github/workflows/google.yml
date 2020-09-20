@@ -18,7 +18,8 @@ env:
   PROJECT_ID: plat-dev-266621 
   CLOUDSDK_CORE_PROJECT: plat-dev-266621  
   GKE_CLUSTER: ops-cdx    # TODO: update to cluster name
-  GKE_ZONE: us-central1-a   # TODO: update to cluster zone
+  ##  GKE_ZONE: us-central1-a   # TODO: update to cluster zone
+  GKE_REGION: us-central1
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   IMAGE: roundcube
 
@@ -45,7 +46,7 @@ jobs:
 
     # Get the GKE credentials so we can deploy to the cluster
     - run: |-
-        gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+        gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION"
 
     # Build the Docker image
     - name: Build
