@@ -1,0 +1,37 @@
+version: "2.3"
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/home/example/nginx/vhost.d:/etc/nginx/vhost.d"
+      - "/home/example/nginx/html:/usr/share/nginx/html"
+      - "/home/example/nginx/certs:/etc/nginx/certs"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "nginx-proxy"
+
+  roundcube:
+    build: ./roundcube
+    image: roundcube
+    container_name: roundcube
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=mail.example.com
+      - LETSENCRYPT_HOST=mail.example.com
+      - LETSENCRYPT_EMAIL=example@example.com
+    volumes:
+      - "rc-data:/rc"
+
+volumes:
+  rc-data:
+    driver: local

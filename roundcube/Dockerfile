@@ -1,24 +1,27 @@
-FROM    debian:stable
-ENV     DEBIAN_FRONTEND noninteractive
-ENV     TERM xterm
-MAINTAINER Round Cube <rc@xxx.org>
+FROM  ubuntu:20.04
+LABEL maintainer="Michael Bushey <roundcube@sendthemtomir.com>"
 
-RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get install -y --no-install-recommends \
-    nginx php5-fpm nano wget sqlite3 procps \
-    php5-mcrypt php5-intl php5-sqlite php-pear \
-    php-net-smtp php-mail-mime
+RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list &&\
+    apt-get update &&\
+    apt-get -y upgrade &&\
+    apt-get install -y --no-install-recommends \
+      apt-transport-https ca-certificates nginx wget sqlite3 procps \
+      php7.4-fpm php7.4-intl php7.4-sqlite3 \
+      php-pear php-net-smtp php-mail-mime &&\
+    rm -rf /var/lIB/apt/lists/*
+
+
 WORKDIR /root
-# when roundcube grows older, change version in the download link, but also in the 'mv' command
-RUN \
-    wget http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/1.1.2/roundcubemail-1.1.2.tar.gz -O - | tar xz ;\
-    rm -fr /usr/share/nginx/www ;\
-    mv /root/roundcubemail-1.1.2 /usr/share/nginx/www ;\
-    rm -fr /usr/share/nginx/www/installer ;\
+ARG RC_VER=1.4.3
+RUN rm -fr /usr/share/nginx/www &&\
+    wget https://github.com/roundcube/roundcubemail/releases/download/${RC_VER}/roundcubemail-${RC_VER}-complete.tar.gz -O - | tar xz &&\
+    mv /root/roundcubemail-${RC_VER} /usr/share/nginx/www &&\
+    rm -fr /usr/share/nginx/www/installer &&\
     mkdir -p /rc
 ADD config.inc.php /usr/share/nginx/www/config/
 ADD default /etc/nginx/sites-enabled/default
 ADD launch.sh /root/
 
+EXPOSE 80
 VOLUME /rc
 CMD [ "bash", "/root/launch.sh" ]
