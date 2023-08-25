@@ -15,12 +15,11 @@ name: Build and Deploy to GKE
 on: push
 
 env:
-  PROJECT_ID: plat-dev-266621 
-  CLOUDSDK_CORE_PROJECT: plat-dev-266621  
-  GKE_CLUSTER: ops-cdx    # TODO: update to cluster name
-  ##  GKE_ZONE: us-central1-a   # TODO: update to cluster zone
-  GKE_REGION: us-central1
-  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
+  PROJECT_ID: [Project]            # TODO: update to project
+  CLOUDSDK_CORE_PROJECT: [Project] # TODO: update to project
+  GKE_CLUSTER: [cluster]           # TODO: update to cluster name
+  GKE_REGION: us-central1          # TODO: update to region
+  DEPLOYMENT_NAME: roundcube # TODO: update to deployment name
   IMAGE: roundcube
 
 
